@@ -39,6 +39,12 @@ export const cardReducer = (state, { type, payload }) => {
                         : item
                 ),
             }
+        
+        case "CLEAR_CART":
+            return {
+                ...state,
+                cart: []
+            }
 
         default:
             return state

@@ -4,12 +4,15 @@ import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
 import { CardProvider } from './context/card.context.jsx'
+import { LoginProvider } from './context/login.context.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
       <CardProvider>
-        <App />
+        <LoginProvider>
+          <App />
+        </LoginProvider>
       </CardProvider>
     </BrowserRouter>
   </StrictMode>,
