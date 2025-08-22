@@ -1,46 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import { useCard } from "../../context/card.context";
 import { findTotalCartAmount } from "../../utils/findTotalCartAmount";
 
 export const PriceDetails = () => {
-  const { cart, cardDispatch } = useCard();
+  const { cart } = useCard();
   const totalCartAmount = findTotalCartAmount(cart);
   const deliveryCharge = 49;
-  const navigate = useNavigate()
-  const loadScript = (src) => {
-    return new Promise(resolve => {
-      const script = document.createElement("script")
-      script.src = src
-      script.onload = () => resolve(true)
-      script.onerror = () => resolve(false)
-      document.body.appendChild(script)
-    })
-  }
-
-  const displayRazorpay = async () => {
-    await loadScript("https://checkout.razorpay.com/v1/checkout.js")
-
-    const options = {
-      key: "rzp_test_R8SokOQlTnkA41",
-      amount: (totalCartAmount + deliveryCharge) * 100,
-      currency: "INR",
-      name: "StoreFlux",
-      description: "Thank you for shopping with us.",
-      image: "https://therightfit.netlify.app/assets/The%20Right%20Fit-logos.jpeg",
-
-      handler: ({ payment_id }) => {
-        cardDispatch({
-          type: "CLEAR_CART"
-        })
-
-        navigate(`/receipt?paymentId=${payment_id}`);
-
-      }
-    }
-
-    const paymentObject = new window.Razorpay(options)
-    paymentObject.open()
-  }
 
   return (
     <div className="w-[320px] p-6 bg-white shadow-lg rounded-2xl border border-gray-200 h-fit w-fit">
@@ -69,7 +33,7 @@ export const PriceDetails = () => {
 
       {/* Place Order Button */}
       <div className="mt-6">
-        <button onClick={displayRazorpay} className="w-full py-3 bg-gradient-to-r from-pink-500 via-orange-500 to-pink-600 hover:from-pink-600 hover:via-orange-600 hover:to-pink-700 text-white text-lg font-semibold rounded-xl shadow-md transition-all">
+        <button className="w-full py-3 bg-gradient-to-r from-pink-500 via-orange-500 to-pink-600 hover:from-pink-600 hover:via-orange-600 hover:to-pink-700 text-white text-lg font-semibold rounded-xl shadow-md transition-all">
           Place Order
         </button>
       </div>
