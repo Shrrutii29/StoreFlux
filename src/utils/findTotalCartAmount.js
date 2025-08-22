@@ -1,0 +1,1 @@
+export const findTotalCartAmount = (cart) => cart?.length > 0 && cart.reduce((acc, cur) => acc + cur.price * (cur.quantity || 1), 0)
