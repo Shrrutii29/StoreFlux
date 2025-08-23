@@ -55,7 +55,7 @@ export const WishlistProductCard = ({ product }) => {
           <h3 className="text-lg font-semibold text-gray-800">
             {product?.title}
           </h3>
-          <p className="text-gray-500 text-sm line-clamp-3 mt-1">
+          <p className="text-gray-500 text-sm mt-1">
             {product?.description}
           </p>
           <p className="text-lg font-bold mt-2 text-gray-900">

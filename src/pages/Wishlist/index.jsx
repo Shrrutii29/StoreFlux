@@ -14,10 +14,10 @@ export const Wishlist = () => {
                 wishlist?.length > 0 ? (
                     <>
                         <h2 className="text-3xl font-bold mb-6 text-gray-900">My Wishlist</h2>
-                        <div className="flex flex-col lg:flex-row gap-10 w-full max-w-6xl">
+                        <div className="flex flex-col items-center justify-center lg:flex-row gap-10 w-full max-w-6xl">
 
                             {/* Wishlist Items */}
-                            <div className="flex flex-col gap-4 w-full lg:w-2/3">
+                            <div className="grid grid-cols-1 place-items-center gap-4 w-full lg:w-2/3">
                                 {
                                     wishlist?.length > 0 ? wishlist.map(product => <WishlistProductCard key={product.id} product={product} />) : <p>Wishlist is empty, add product to wishlist</p>
                                 }

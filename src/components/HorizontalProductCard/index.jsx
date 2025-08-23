@@ -59,7 +59,7 @@ export const HorizontalProductCard = ({ product }) => {
       <div className="flex flex-col justify-between flex-1">
         <div>
           <h3 className="text-lg font-semibold text-gray-800 line-clamp-1">{product?.title}</h3>
-          <p className="text-gray-500 text-sm line-clamp-2 mt-1">{product?.description}</p>
+          <p className="text-gray-500 text-sm mt-1">{product?.description}</p>
           <p className="text-lg font-bold mt-2 text-gray-900">₹ {product?.price}</p>
         </div>
 
