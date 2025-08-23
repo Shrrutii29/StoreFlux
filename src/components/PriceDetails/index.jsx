@@ -21,7 +21,7 @@ export const PriceDetails = () => {
     await loadScript("https://checkout.razorpay.com/v1/checkout.js")
 
     const options = {
-      key: import.meta.env.RAZORPAY_API_ID,
+      key: import.meta.env.VITE_RAZORPAY_KEY,
       amount: (totalCartAmount + deliveryCharge) * 100,
       currency: "INR",
       name: "StoreFlux",
