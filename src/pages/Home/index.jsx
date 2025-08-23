@@ -10,15 +10,23 @@ export const Home = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("ALL");
+    const [loading, setLoading] = useState(true); // <-- loading state
     const { cart } = useCard();
 
     useEffect(() => {
         (async () => {
-            const products = await getAllProducts();
-            const categories = await getAllCategories();
-            const updatedCategories = [{ id: '1a', name: 'ALL' }, ...categories]; // ALL first
-            setProducts(products);
-            setCategories(updatedCategories);
+            setLoading(true);
+            try {
+                const products = await getAllProducts();
+                const categories = await getAllCategories();
+                const updatedCategories = [{ id: '1a', name: 'ALL' }, ...categories];
+                setProducts(products);
+                setCategories(updatedCategories);
+            } catch (err) {
+                console.error("Failed to fetch data:", err);
+            } finally {
+                setLoading(false);
+            }
         })();
     }, []);
 
@@ -39,7 +47,7 @@ export const Home = () => {
                             key={category.id}
                             onClick={() => onCategoryClick({ category: category.name })}
                             className={`px-4 py-2 rounded-full font-semibold cursor-pointer transition 
-                ${selectedCategory === category.name
+                                ${selectedCategory === category.name
                                     ? "bg-green-500 text-white shadow-md"
                                     : "bg-slate-200 text-gray-700 hover:bg-slate-300"}`}
                         >
@@ -50,7 +58,11 @@ export const Home = () => {
 
                 {/* Products Grid */}
                 <div className="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto px-4">
-                    {filterByCategories?.length > 0 ? (
+                    {loading ? (
+                        <div className="text-center py-16 flex flex-col justify-center items-center w-full">
+                            <p className="text-gray-500 text-lg animate-pulse">Loading products...</p>
+                        </div>
+                    ) : filterByCategories?.length > 0 ? (
                         filterByCategories.map(product => (
                             <ProductCard key={product.id} product={product} />
                         ))
@@ -63,7 +75,6 @@ export const Home = () => {
                         </div>
                     )}
                 </div>
-
             </main>
         </>
     );

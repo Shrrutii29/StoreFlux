@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 export const Signup = () => {
-  const { loginDispatch, name, email, password, avatar } = useLogin()
+  const { loginDispatch, name, email, password } = useLogin()
   const navigate = useNavigate()
 
   const [status, setStatus] = useState("")
@@ -17,9 +17,9 @@ export const Signup = () => {
     try {
       const res = await checkEmailAvailability(email)
       if (!res.isAvailable) {
-        setStatus("❌ Email already registered")
+        setStatus("Email already registered")
       } else {
-        setStatus("✅ Email available")
+        setStatus("Email available")
       }
     } catch {
       setStatus("⚠️ Could not verify email")
@@ -31,18 +31,14 @@ export const Signup = () => {
     setLoading(true)
     setStatus("")
     try {
-      const data = await userSignup(
-        name,
-        email,
-        password,
-        avatar || "https://picsum.photos/200"
-      )
-
-      if (data.id) {
-        setStatus("🎉 Registration successful! Redirecting...")
-        setTimeout(() => navigate("/login"), 1500)
+      const data = await userSignup(name, email, password);
+      if (data?.id) {
+        setStatus("🎉 Registration successful! Redirecting...");
+        setTimeout(() => navigate("/auth/login"), 1500);
+      } else if (data?.error) {
+        setStatus("⚠️ Registration failed: " + data.error);
       } else {
-        setStatus("⚠️ Registration failed")
+        setStatus("⚠️ Registration failed. (Fake Store API limitation)");
       }
     } catch (err) {
       setStatus("⚠️ " + err.message)
@@ -52,16 +48,22 @@ export const Signup = () => {
   }
 
   const onNameChange = (e) =>
-    loginDispatch({ type: "NAME", payload: { value: e.target.value } })
+    loginDispatch({
+      type: "NAME",
+      payload: { value: e.target.value }
+    })
 
   const onEmailChange = (e) =>
-    loginDispatch({ type: "EMAIL", payload: { value: e.target.value } })
+    loginDispatch({
+      type: "EMAIL",
+      payload: { value: e.target.value }
+    })
 
   const onPasswordChange = (e) =>
-    loginDispatch({ type: "PASSWORD", payload: { value: e.target.value } })
-
-  const onAvatarChange = (e) =>
-    loginDispatch({ type: "AVATAR", payload: { value: e.target.value } })
+    loginDispatch({
+      type: "PASSWORD",
+      payload: { value: e.target.value }
+    })
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 sm:px-6">
@@ -113,17 +115,6 @@ export const Signup = () => {
           />
         </div>
 
-        {/* Avatar */}
-        <div className="flex flex-col gap-2 mb-6">
-          <label className="text-gray-700 font-medium text-sm sm:text-base">Avatar (optional)</label>
-          <input
-            onChange={onAvatarChange}
-            type="url"
-            placeholder="Avatar URL"
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
-          />
-        </div>
-
         {/* Submit */}
         <button
           type="submit"
@@ -137,7 +128,7 @@ export const Signup = () => {
           Already have an account?{" "}
           <span
             className="text-blue-600 cursor-pointer hover:underline"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/auth/login")}
           >
             Login
           </span>

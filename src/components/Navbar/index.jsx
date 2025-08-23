@@ -72,35 +72,50 @@ export const Navbar = () => {
 
                     {isAccountDropdownOpen && (
                         <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-xl z-50 overflow-hidden animate-fade-in">
+                            {!token?.access_token ? (
+                                <>
+                                    {/* Login */}
+                                    <button
+                                        onClick={onLoginClick}
+                                        className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-green-500 hover:text-white transition"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">login</span>
+                                        Login
+                                    </button>
 
-                            {/* Login */}
-                            <button
-                                onClick={onLoginClick}
-                                className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-green-500 hover:text-white transition"
-                            >
-                                <span className="material-symbols-outlined text-lg">login</span>
-                                {token?.access_token ? "Logout" : "Login"}
-                            </button>
+                                    {/* Sign Up */}
+                                    <button
+                                        onClick={() => navigate("/auth/signup")}
+                                        className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">how_to_reg</span>
+                                        Sign Up
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    {/* Logout */}
+                                    <button
+                                        onClick={onLoginClick} // handles logout
+                                        className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-red-500 hover:text-white transition"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">logout</span>
+                                        Logout
+                                    </button>
 
-                            {/* Sign Up */}
-                            <button
-                                onClick={() => navigate("/auth/signup")}
-                                className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-blue-500 hover:text-white transition"
-                            >
-                                <span className="material-symbols-outlined text-lg">how_to_reg</span>
-                                Sign Up
-                            </button>
-
-                            {/* Profile */}
-                            <button
-                                className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-yellow-500 hover:text-white transition"
-                                onClick={() => navigate("/profile")}
-                            >
-                                <span className="material-symbols-outlined text-lg">person</span>
-                                Profile
-                            </button>
+                                    {/* Profile */}
+                                    <button
+                                        className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-yellow-500 hover:text-white transition"
+                                        onClick={() => navigate("/profile")}
+                                    >
+                                        <span className="material-symbols-outlined text-lg">person</span>
+                                        Profile
+                                    </button>
+                                </>
+                            )}
                         </div>
                     )}
+
                 </div>
             </nav>
         </header>
