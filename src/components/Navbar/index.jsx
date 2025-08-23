@@ -21,22 +21,21 @@ export const Navbar = () => {
         }
     }
     return (
-        <header className="flex items-center justify-between bg-slate-800 px-8 py-3 shadow-lg relative">
+        <header className="flex w-full h-full justify-between bg-slate-800 px-4 py-3 shadow-lg relative">
             {/* Logo */}
-            <div className="cursor-pointer" onClick={() => navigate("/")}>
-                <h1 className="text-6xl md:text-4xl font-extrabold text-white tracking-tight hover:text-sky-600 transition-colors">
+            <div className="cursor-pointer mb-2 sm:mb-0" onClick={() => navigate("/")}>
+                <h1 className="text-4xl font-extrabold text-white tracking-tight hover:text-sky-600 transition-colors">
                     StoreFlux
                 </h1>
             </div>
 
             {/* Navigation Icons */}
-            <nav className="flex items-center gap-6 md:gap-4 relative">
+            <nav className="flex items-center gap-4 sm:gap-6 relative">
                 {/* Wishlist */}
                 <div className="relative">
                     <span
                         onClick={() => navigate("/wishlist")}
-                        className="material-symbols-outlined text-white hover:text-pink-400 cursor-pointer transition-colors duration-300"
-                        style={{ fontSize: "30px" }}
+                        className="material-symbols-outlined text-white hover:text-pink-400 cursor-pointer transition-colors duration-300 text-2xl sm:text-[30px]"
                     >
                         favorite
                     </span>
@@ -51,8 +50,7 @@ export const Navbar = () => {
                 <div className="relative">
                     <span
                         onClick={() => navigate("/cart")}
-                        className="material-symbols-outlined text-white hover:text-yellow-400 cursor-pointer transition-colors duration-300"
-                        style={{ fontSize: "30px" }}
+                        className="material-symbols-outlined text-white hover:text-yellow-400 cursor-pointer transition-colors duration-300 text-2xl sm:text-[30px]"
                     >
                         shopping_cart
                     </span>
@@ -65,30 +63,47 @@ export const Navbar = () => {
 
                 {/* Account */}
                 <div className="relative">
-                    <span onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
-                        className="material-symbols-outlined text-white hover:text-green-400 cursor-pointer transition-colors duration-300"
-                        style={{ fontSize: "30px" }}
+                    <span
+                        onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
+                        className="material-symbols-outlined text-white hover:text-green-400 cursor-pointer transition-colors duration-300 text-3xl"
                     >
                         account_circle
                     </span>
-                    {
-                        isAccountDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-32 bg-white border border-gray-200 rounded-lg shadow-lg">
-                                <button
-                                    onClick={onLoginClick}
-                                    className="w-full px-4 py-2 text-left text-gray-700 hover:bg-green-500 hover:text-white rounded-md transition"
-                                >
-                                    {token?.access_token ? 'Logout' : 'Login'}
-                                </button>
-                            </div>
-                        )
-                    }
 
+                    {isAccountDropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-200 rounded-lg shadow-xl z-50 overflow-hidden animate-fade-in">
 
+                            {/* Login */}
+                            <button
+                                onClick={onLoginClick}
+                                className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-green-500 hover:text-white transition"
+                            >
+                                <span className="material-symbols-outlined text-lg">login</span>
+                                {token?.access_token ? "Logout" : "Login"}
+                            </button>
 
+                            {/* Sign Up */}
+                            <button
+                                onClick={() => navigate("/auth/signup")}
+                                className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-blue-500 hover:text-white transition"
+                            >
+                                <span className="material-symbols-outlined text-lg">how_to_reg</span>
+                                Sign Up
+                            </button>
+
+                            {/* Profile */}
+                            <button
+                                className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-yellow-500 hover:text-white transition"
+                                onClick={() => navigate("/profile")}
+                            >
+                                <span className="material-symbols-outlined text-lg">person</span>
+                                Profile
+                            </button>
+                        </div>
+                    )}
                 </div>
-
             </nav>
         </header>
+
     );
 };

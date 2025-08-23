@@ -64,37 +64,37 @@ export const Signup = () => {
     loginDispatch({ type: "AVATAR", payload: { value: e.target.value } })
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 sm:px-6">
       <form
         onSubmit={onFormSubmit}
-        className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md"
+        className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-md"
       >
-        <h2 className="text-2xl font-semibold text-gray-800 mb-6 text-center">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center">
           Sign Up
         </h2>
 
         {/* Name */}
         <div className="flex flex-col gap-2 mb-4">
-          <label className="text-gray-700 font-medium">Name *</label>
+          <label className="text-gray-700 font-medium text-sm sm:text-base">Name *</label>
           <input
             onChange={onNameChange}
             type="text"
             placeholder="Enter your full name"
             required
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           />
         </div>
 
         {/* Email */}
         <div className="flex flex-col gap-2 mb-4">
-          <label className="text-gray-700 font-medium">Email *</label>
+          <label className="text-gray-700 font-medium text-sm sm:text-base">Email *</label>
           <input
             onChange={onEmailChange}
             onBlur={onEmailBlur}
             type="email"
             placeholder="Enter your email"
             required
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           />
           {status && (
             <small className="text-sm text-gray-600">{status}</small>
@@ -103,24 +103,24 @@ export const Signup = () => {
 
         {/* Password */}
         <div className="flex flex-col gap-2 mb-4">
-          <label className="text-gray-700 font-medium">Password *</label>
+          <label className="text-gray-700 font-medium text-sm sm:text-base">Password *</label>
           <input
             onChange={onPasswordChange}
             type="password"
             placeholder="Enter your password"
             required
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           />
         </div>
 
         {/* Avatar */}
         <div className="flex flex-col gap-2 mb-6">
-          <label className="text-gray-700 font-medium">Avatar (optional)</label>
+          <label className="text-gray-700 font-medium text-sm sm:text-base">Avatar (optional)</label>
           <input
             onChange={onAvatarChange}
             type="url"
             placeholder="Avatar URL"
-            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
           />
         </div>
 
@@ -144,5 +144,6 @@ export const Signup = () => {
         </p>
       </form>
     </div>
+
   )
 }
