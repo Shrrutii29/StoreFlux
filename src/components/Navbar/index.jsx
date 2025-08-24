@@ -17,6 +17,7 @@ export const Navbar = () => {
                 type: 'LOGOUT'
 
             })
+            localStorage.removeItem('token');
             navigate('/auth/login')
         }
     }

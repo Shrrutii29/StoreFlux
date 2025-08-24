@@ -1,3 +1,4 @@
+import { useAuth } from "../../context/auth.context"
 import { useCard } from "../../context/card.context"
 import { findProductInCart } from "../../utils/findProductInCart"
 import { findProductInWishlist } from "../../utils/findProductInWishlist"
@@ -8,11 +9,14 @@ export const ProductCard = ({ product }) => {
     const navigate = useNavigate()
     const isProductInCart = findProductInCart(cart, product.id)
     const isProductInWishlist = findProductInWishlist(wishlist, product.id)
+    const { id } = useAuth()
 
     const onAddCartClick = (product) => {
+        const key = id ? `cart_${id}` : "cart_guest";
 
         if (!isProductInCart) {
-            localStorage.setItem('cart', JSON.stringify([...cart, product]))
+            const updatedCart = [...cart, product];
+            localStorage.setItem(key, JSON.stringify(updatedCart));
             cardDispatch({
                 type: "ADD_TO_CART",
                 payload: { product },
@@ -20,19 +24,22 @@ export const ProductCard = ({ product }) => {
 
         } else {
             navigate("/cart")
-
         }
     }
 
     const onWishlistClick = (product) => {
+        const key = id ? `wishlist_${id}` : "wishlist_guest";
         if (!isProductInWishlist) {
-            localStorage.setItem('wishlist', JSON.stringify([...wishlist, product]))
+            const updatedWishlist = [...wishlist, product];
+            localStorage.setItem(key, JSON.stringify(updatedWishlist));
             cardDispatch({
                 type: "ADD_TO_WISHLIST",
                 payload: { product },
             })
 
         } else {
+            const updatedWishlist = wishlist.filter(item => item.id !== product.id);
+            localStorage.setItem(key, JSON.stringify(updatedWishlist));
             cardDispatch({
                 type: "REMOVE_FROM_WISHLIST",
                 payload: { product },

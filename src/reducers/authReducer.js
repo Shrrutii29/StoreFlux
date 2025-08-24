@@ -1,5 +1,11 @@
 export const authReducer = (state, { type, payload }) => {
     switch (type) {
+        case 'ID':
+            return {
+                ...state,
+                id: payload.id
+            }
+
         case 'NAME':
             return {
                 ...state,

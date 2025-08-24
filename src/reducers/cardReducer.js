@@ -33,12 +33,19 @@ export const cardReducer = (state, { type, payload }) => {
                         : item
                 ),
             }
-        
+
         case "CLEAR_CART":
             return {
                 ...state,
                 cart: []
             }
+
+        case "SET_CART":
+            return { ...state, cart: payload };
+
+        case "SET_WISHLIST":
+            return { ...state, wishlist: payload };
+
 
         default:
             return state

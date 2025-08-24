@@ -2,6 +2,7 @@ import { useAuth } from "../../context/auth.context.jsx"
 import { userLogin } from "../../api/auth.js"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { getProfile } from "../../api/auth.js"
 
 export const Login = () => {
   const { authDispatch, email, password } = useAuth()
@@ -23,6 +24,27 @@ export const Login = () => {
       }
 
       if (data?.access_token) {
+
+        const profile = await getProfile(data.access_token);
+
+        if (profile?.id) {
+          const userId = profile.id;
+          authDispatch({ type: "ID", payload: { id: profile.id } });
+
+          // --- Merge guest cart and wishlist into user storage ---
+          const userCart = JSON.parse(localStorage.getItem(`cart_${userId}`)) || [];
+          const guestCart = JSON.parse(localStorage.getItem('cart_guest')) || [];
+          const mergedCart = [...userCart, ...guestCart];
+          localStorage.setItem(`cart_${userId}`, JSON.stringify(mergedCart));
+          localStorage.removeItem('cart_guest');
+
+          const userWishlist = JSON.parse(localStorage.getItem(`wishlist_${userId}`)) || [];
+          const guestWishlist = JSON.parse(localStorage.getItem('wishlist_guest')) || [];
+          const mergedWishlist = [...userWishlist, ...guestWishlist];
+          localStorage.setItem(`wishlist_${userId}`, JSON.stringify(mergedWishlist));
+          localStorage.removeItem('wishlist_guest');
+        }
+
         authDispatch({
           type: "TOKEN",
           payload: { token: data }
