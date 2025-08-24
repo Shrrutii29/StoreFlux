@@ -55,18 +55,20 @@ export const getProfile = async (token) => {
 
 export const updateProfile = async (id, updatedData, token) => {
     try {
-      const data = await axios.put(
+      const { data } = await axios.put(
         `https://api.escuelajs.co/api/v1/users/${id}`,
         updatedData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${token}`, // needs correct token
           },
         }
-      );
-      return data;
+      )
+      return data
     } catch (error) {
-      return { error: error.response?.data?.message || "Failed to update profile" };
+      console.error("Update failed:", error.response?.data || error.message)
+      throw error
     }
-  };
+  }
+  
 
