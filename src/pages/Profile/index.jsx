@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { Navbar } from "../../components/Navbar"
 import { getProfile, updateProfile } from "../../api/auth"
-import { useLogin } from "../../context/login.context"
+import { useAuth } from "../../context/auth.context"
 
 export const Profile = () => {
-  const { loginDispatch, name, email, password, avatar } = useLogin()
+  const { authDispatch, name, email, password, avatar } = useAuth()
   const token = localStorage.getItem("token")
 
   const [isEditing, setIsEditing] = useState(false)
@@ -25,10 +25,10 @@ export const Profile = () => {
         const profileData = await getProfile(token)
 
         if (profileData?.id) {
-          loginDispatch({ type: "NAME", payload: { value: profileData.name } })
-          loginDispatch({ type: "EMAIL", payload: { value: profileData.email } })
-          loginDispatch({ type: "PASSWORD", payload: { value: profileData.password } })
-          loginDispatch({ type: "AVATAR", payload: { value: profileData.avatar } })
+          authDispatch({ type: "NAME", payload: { value: profileData.name } })
+          authDispatch({ type: "EMAIL", payload: { value: profileData.email } })
+          authDispatch({ type: "PASSWORD", payload: { value: profileData.password } })
+          authDispatch({ type: "AVATAR", payload: { value: profileData.avatar } })
 
           setFormData({
             id: profileData.id,
@@ -44,7 +44,7 @@ export const Profile = () => {
     }
 
     fetchProfile()
-  }, [token, loginDispatch])
+  }, [token, authDispatch])
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -59,10 +59,10 @@ export const Profile = () => {
       const updated = await updateProfile(formData.id, formData, token)
 
       if (updated?.id) {
-        loginDispatch({ type: "NAME", payload: { value: updated.name } })
-        loginDispatch({ type: "EMAIL", payload: { value: updated.email } })
-        loginDispatch({ type: "PASSWORD", payload: { value: updated.password } })
-        loginDispatch({ type: "AVATAR", payload: { value: updated.avatar } })
+        authDispatch({ type: "NAME", payload: { value: updated.name } })
+        authDispatch({ type: "EMAIL", payload: { value: updated.email } })
+        authDispatch({ type: "PASSWORD", payload: { value: updated.password } })
+        authDispatch({ type: "AVATAR", payload: { value: updated.avatar } })
 
         setFormData({
           id: updated.id,

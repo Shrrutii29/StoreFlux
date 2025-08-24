@@ -3,9 +3,9 @@ import {Routes, Route} from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Cart } from './pages/Cart'
 import { Wishlist } from './pages/Wishlist'
-import { AuthLogin } from './pages/AuthLogin'
 import Receipt from './pages/Receipt'
 import { AuthSignup } from './pages/AuthSignup'
+import { AuthLogin } from './pages/AuthLogin'
 import { Profile } from './pages/Profile'
 
 function App() {

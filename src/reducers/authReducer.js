@@ -1,4 +1,4 @@
-export const loginReducer = (state, { type, payload }) => {
+export const authReducer = (state, { type, payload }) => {
     switch (type) {
         case 'NAME':
             return {

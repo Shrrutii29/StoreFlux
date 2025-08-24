@@ -1,7 +1,8 @@
 import axios from "axios"
 
+const Baseurl = "https://api.escuelajs.co/api/v1"
 export const userLogin = async (email, password) => {
-    const url = "https://api.escuelajs.co/api/v1/auth/login"
+    const url = `${Baseurl}/auth/login`
     try {
         const { data } = await axios.post(url, {
             email: email,
@@ -14,7 +15,7 @@ export const userLogin = async (email, password) => {
 }
 
 export const userSignup = async (name, email, password) => {
-    const url = "https://api.escuelajs.co/api/v1/users/";
+    const url = `${Baseurl}/users/`;
     try {
         const { data } = await axios.post(url, {
             name: name,
@@ -31,7 +32,7 @@ export const userSignup = async (name, email, password) => {
 
 export const checkEmailAvailability = async (email) => {
     try {
-        const { data } = await axios.get(`https://api.escuelajs.co/api/v1/users`);
+        const { data } = await axios.get(`${Baseurl}/users`);
         const exists = data.some(user => user.email === email);
         return { isAvailable: !exists };
     } catch (err) {
@@ -40,7 +41,7 @@ export const checkEmailAvailability = async (email) => {
 };
 
 export const getProfile = async (token) => {
-    const url = "https://api.escuelajs.co/api/v1/auth/profile";
+    const url = `${Baseurl}/auth/profile`;
     try {
         const { data } = await axios.get(url, {
             headers: {
@@ -56,7 +57,7 @@ export const getProfile = async (token) => {
 export const updateProfile = async (id, updatedData, token) => {
     try {
       const { data } = await axios.put(
-        `https://api.escuelajs.co/api/v1/users/${id}`,
+        `${Baseurl}/users/${id}`,
         updatedData,
         {
           headers: {

@@ -1,10 +1,10 @@
-import { useLogin } from "../../context/login.context.jsx"
+import { useAuth } from "../../context/auth.context.jsx"
 import { userLogin } from "../../api/auth.js"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 export const Login = () => {
-  const { loginDispatch, email, password } = useLogin()
+  const { authDispatch, email, password } = useAuth()
   const navigate = useNavigate()
 
   const [loading, setLoading] = useState(false)
@@ -19,7 +19,7 @@ export const Login = () => {
       const data = await userLogin(email, password)
 
       if (data?.access_token) {
-        loginDispatch({
+        authDispatch({
           type: "TOKEN",
           payload: { token: data }
         });
@@ -41,13 +41,13 @@ export const Login = () => {
   }
 
   const onEmailChange = (e) =>
-    loginDispatch({
+    authDispatch({
       type: "EMAIL",
       payload: { value: e.target.value },
     })
 
   const onPasswordChange = (e) =>
-    loginDispatch({
+    authDispatch({
       type: "PASSWORD",
       payload: { value: e.target.value },
     })

@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { useCard } from "../../context/card.context";
 import { useNavigate } from "react-router-dom";
-import { useLogin } from "../../context/login.context";
+import { useAuth } from "../../context/auth.context";
 
 export const Navbar = () => {
     const navigate = useNavigate();
     const { cart, wishlist } = useCard();
     const [isAccountDropdownOpen, setIsAccountDropdownOpen] = useState(false)
-    const { token, loginDispatch } = useLogin()
+    const { token, authDispatch } = useAuth()
 
     const onLoginClick = () => {
         if (!token?.access_token) {
             navigate('/auth/login')
         } else {
-            loginDispatch({
+            authDispatch({
                 type: 'LOGOUT'
 
             })

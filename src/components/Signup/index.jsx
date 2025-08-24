@@ -1,10 +1,10 @@
-import { useLogin } from "../../context/login.context.jsx"
+import { useAuth } from "../../context/auth.context.jsx"
 import { userSignup, checkEmailAvailability } from "../../api/auth.js"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 export const Signup = () => {
-  const { loginDispatch, name, email, password } = useLogin()
+  const { authDispatch, name, email, password } = useAuth()
   const navigate = useNavigate()
 
   const [status, setStatus] = useState("")
@@ -48,19 +48,19 @@ export const Signup = () => {
   }
 
   const onNameChange = (e) =>
-    loginDispatch({
+    authDispatch({
       type: "NAME",
       payload: { value: e.target.value }
     })
 
   const onEmailChange = (e) =>
-    loginDispatch({
+    authDispatch({
       type: "EMAIL",
       payload: { value: e.target.value }
     })
 
   const onPasswordChange = (e) =>
-    loginDispatch({
+    authDispatch({
       type: "PASSWORD",
       payload: { value: e.target.value }
     })
