@@ -20,7 +20,7 @@ export const userSignup = async (name, email, password) => {
             name: name,
             email: email,
             password: password,
-            avatar: ""
+            avatar: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
 
         });
         return data;
@@ -35,19 +35,38 @@ export const checkEmailAvailability = async (email) => {
         const exists = data.some(user => user.email === email);
         return { isAvailable: !exists };
     } catch (err) {
-        return { isAvailable: true }; 
+        return { isAvailable: true };
     }
 };
 
-export const updateUser = async (userId, updatedFields) => {
+export const getProfile = async (token) => {
+    const url = "https://api.escuelajs.co/api/v1/auth/profile";
     try {
-      const { data } = await axios.put(
-        `https://api.escuelajs.co/api/v1/users/${userId}`,
-        updatedFields,
-      );
-      return data;
+        const { data } = await axios.get(url, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        return data; 
     } catch (err) {
         return { error: err.response?.data?.message || err.message };
+    }
+};
+
+export const updateProfile = async (id, updatedData, token) => {
+    try {
+      const data = await axios.put(
+        `https://api.escuelajs.co/api/v1/users/${id}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      return { error: error.response?.data?.message || "Failed to update profile" };
     }
   };
 

@@ -24,10 +24,8 @@ export const Login = () => {
           payload: { token: data }
         });
 
-        loginDispatch({
-          type: "ID",
-          payload: {id : data?.id}
-        })
+        localStorage.setItem("token", data.access_token)
+
         setStatus("🎉 Login successful! Redirecting...")
         setTimeout(() => navigate("/"), 1000)
       } else if (data?.message) {

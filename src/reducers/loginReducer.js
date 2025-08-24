@@ -15,15 +15,17 @@ export const loginReducer = (state, { type, payload }) => {
                 ...state,
                 password: payload.value
             }
+
         case 'TOKEN':
             return {
                 ...state,
                 token: payload.token
             }
-        case 'ID':
+
+        case 'AVATAR':
             return {
                 ...state,
-                id: payload.id
+                avatar: payload.value
             }
 
         case 'LOGOUT':
@@ -31,17 +33,13 @@ export const loginReducer = (state, { type, payload }) => {
                 ...state,
                 email: '',
                 password: '',
+                name: '',
                 token: ''
             }
 
-        case "UPDATE_USER":
-            // ✅ update flat fields instead of nested inside token
-            return {
-                ...state,
-                id: payload.user.id,
-                name: payload.user.name,
-                email: payload.user.email
-            };
+        case "SET_USER":
+            return { ...state, ...action.payload };
+
         default:
             return state
     }
