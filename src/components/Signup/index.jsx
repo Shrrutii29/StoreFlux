@@ -66,7 +66,7 @@ export const Signup = () => {
     })
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 sm:px-6">
+    <div className="flex justify-center items-center min-h-screen px-4 sm:px-6">
       <form
         onSubmit={onFormSubmit}
         className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 w-full max-w-md"
