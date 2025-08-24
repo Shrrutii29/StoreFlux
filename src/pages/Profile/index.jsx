@@ -88,13 +88,12 @@ export const Profile = () => {
       <Navbar />
       <main className="flex justify-center items-center min-h-screen px-4 bg-gray-100">
         <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-2xl w-full text-center relative">
-          {/* Gradient header */}
           <div className="absolute top-0 left-0 w-full h-20 rounded-t-2xl bg-gradient-to-r from-pink-400 to-orange-400"></div>
           <h2 className="relative z-10 text-3xl font-bold text-white mb-10">
             My Profile
           </h2>
 
-          {/* ✅ Success/Error Message */}
+          {/* Success/Error Message */}
           {message.text && (
             <div
               className={`flex items-center gap-2 justify-center mb-6 p-3 rounded-lg text-sm font-medium transition-all duration-500 ${
@@ -110,7 +109,6 @@ export const Profile = () => {
             </div>
           )}
 
-          {/* Avatar */}
           <img
             src={isEditing ? formData.avatar : avatar}
             alt="profile avatar"
@@ -154,7 +152,7 @@ export const Profile = () => {
 
               <button
                 onClick={handleSave}
-                disabled={loading} // ✅ disable while saving
+                disabled={loading} 
                 className={`mt-4 px-6 py-3 rounded-xl shadow-md transition-transform text-white ${
                   loading
                     ? "bg-gray-400 cursor-not-allowed"

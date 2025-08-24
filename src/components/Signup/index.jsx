@@ -119,7 +119,7 @@ export const Signup = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200"
+          className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-200 cursor-pointer"
         >
           {loading ? "Registering..." : "Sign Up"}
         </button>

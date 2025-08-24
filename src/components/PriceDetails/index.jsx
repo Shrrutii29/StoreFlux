@@ -71,7 +71,7 @@ export const PriceDetails = () => {
       <div className="mt-4 sm:mt-6">
         <button
           onClick={displayRazorpay}
-          className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 via-orange-500 to-pink-600 hover:from-pink-600 hover:via-orange-600 hover:to-pink-700 text-white text-base sm:text-lg font-semibold rounded-xl shadow-md transition-all"
+          className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-pink-500 via-orange-500 to-pink-600 hover:from-pink-600 hover:via-orange-600 hover:to-pink-700 text-white text-base sm:text-lg font-semibold rounded-xl shadow-md transition-all cursor-pointer"
         >
           Place Order
         </button>

@@ -93,7 +93,7 @@ export const Login = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg hover:bg-blue-700 transition duration-200 text-sm sm:text-base disabled:opacity-50"
+          className="w-full bg-blue-600 text-white py-2 sm:py-3 rounded-lg hover:bg-blue-700 transition duration-200 text-sm sm:text-base disabled:opacity-50 cursor-pointer"
         >
           {loading ? "Logging in..." : "Login"}
         </button>

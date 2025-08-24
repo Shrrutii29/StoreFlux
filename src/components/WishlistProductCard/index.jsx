@@ -68,7 +68,7 @@ export const WishlistProductCard = ({ product }) => {
         <button
           className="mt-3 sm:mt-2 w-full sm:w-auto bg-gradient-to-r from-pink-500 via-orange-500 to-pink-600
             hover:from-pink-600 hover:via-orange-600 hover:to-pink-700
-            text-white py-2 px-4 rounded-xl hover:bg-pink-600 transition flex gap-2 sm:gap-3 justify-center items-center"
+            text-white py-2 px-4 rounded-xl hover:bg-pink-600 transition flex gap-2 sm:gap-3 justify-center items-center cursor-pointer"
           onClick={() => onAddCartClick(product)}
         >
           <span className="material-symbols-outlined text-[20px]">

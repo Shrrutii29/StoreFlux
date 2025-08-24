@@ -68,14 +68,14 @@ export const HorizontalProductCard = ({ product }) => {
           {/* Quantity */}
           <div className="flex items-center gap-2 border rounded-full px-3 py-1 bg-gray-50 shadow-inner">
             <button
-              className="px-2 text-lg font-bold text-gray-600 hover:text-gray-800 transition"
+              className="px-2 text-lg font-bold text-gray-600 hover:text-gray-800 transition cursor-pointer"
               onClick={onDecreaseQuantity}
             >
               -
             </button>
             <span className="px-2 font-medium text-gray-700">{quantity}</span>
             <button
-              className="px-2 text-lg font-bold text-gray-600 hover:text-gray-800 transition"
+              className="px-2 text-lg font-bold text-gray-600 hover:text-gray-800 transition cursor-pointer"
               onClick={onIncreaseQuantity}
             >
               +
@@ -86,7 +86,7 @@ export const HorizontalProductCard = ({ product }) => {
           <div className="flex flex-wrap gap-2 sm:gap-3">
             <button
               onClick={() => onWishlistClick(product)}
-              className="flex items-center gap-1 text-pink-600 hover:text-pink-700 bg-pink-50 px-3 py-1 rounded-full shadow hover:bg-pink-100 transition text-sm sm:text-base"
+              className="flex items-center gap-1 text-pink-600 hover:text-pink-700 bg-pink-50 px-3 py-1 rounded-full shadow hover:bg-pink-100 transition text-sm sm:text-base cursor-pointer"
             >
               <span className="material-symbols-outlined text-[20px] sm:text-[22px]">
                 {isProductInWishlist ? "heart_minus" : "heart_plus"}
@@ -95,7 +95,7 @@ export const HorizontalProductCard = ({ product }) => {
             </button>
             <button
               onClick={() => onRemoveClick(product)}
-              className="flex items-center gap-1 text-red-600 hover:text-red-700 bg-red-50 px-3 py-1 rounded-full shadow hover:bg-red-100 transition text-sm sm:text-base"
+              className="flex items-center gap-1 text-red-600 hover:text-red-700 bg-red-50 px-3 py-1 rounded-full shadow hover:bg-red-100 transition text-sm sm:text-base cursor-pointer"
             >
               <span className="material-symbols-outlined text-[18px] sm:text-[20px]">shopping_cart_off</span>
               Remove

@@ -1,6 +1,4 @@
 export const cardReducer = (state, { type, payload }) => {
-    console.log("Reducer called:", type, payload);
-
     switch (type) {
         case 'ADD_TO_CART':
             return {
@@ -15,16 +13,12 @@ export const cardReducer = (state, { type, payload }) => {
             }
 
         case 'ADD_TO_WISHLIST':
-            console.log("Before Add:", state.wishlist);
-
             return {
                 ...state,
                 wishlist: [...state.wishlist, payload.product]
             }
 
         case 'REMOVE_FROM_WISHLIST':
-            console.log("Before Remove:", state.wishlist);
-
             return {
                 ...state,
                 wishlist: state.wishlist.filter(product => product.id !== payload.product.id)

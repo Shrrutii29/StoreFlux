@@ -96,7 +96,7 @@ export const Navbar = () => {
                                 <>
                                     {/* Logout */}
                                     <button
-                                        onClick={onLoginClick} // handles logout
+                                        onClick={onLoginClick}
                                         className="w-full flex items-center gap-2 px-4 py-2 text-left text-gray-700 hover:bg-red-500 hover:text-white transition"
                                     >
                                         <span className="material-symbols-outlined text-lg">logout</span>

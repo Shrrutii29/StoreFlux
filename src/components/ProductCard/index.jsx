@@ -35,7 +35,7 @@ export const ProductCard = ({ product }) => {
             {/* Wishlist Icon */}
             <button
                 onClick={() => onWishlistClick(product)}
-                className={`absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full shadow-md transition-colors z-10 ${isProductInWishlist ? "bg-pink-800 hover:bg-pink-300" : "bg-white hover:bg-pink-100"}`}
+                className={`absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer shadow-md transition-colors z-10 ${isProductInWishlist ? "bg-pink-800 hover:bg-pink-300" : "bg-white hover:bg-pink-100"}`}
             >
                 <span className={`material-symbols-outlined text-[22px] ${isProductInWishlist ? "text-gray-100" : "text-pink-600"}`}>
                     {isProductInWishlist ? "heart_minus" : "heart_plus"}
@@ -71,7 +71,7 @@ export const ProductCard = ({ product }) => {
       hover:from-orange-600 via-orange-700 to-pink-600
       text-white px-3 sm:px-5 py-2.5 rounded-full
       shadow-lg hover:shadow-xl
-      transition-all duration-300"
+      transition-all duration-300 cursor-pointer"
                     onClick={() => onAddCartClick(product)}
                 >
                     <span className="material-symbols-outlined text-[18px] sm:text-[20px]">

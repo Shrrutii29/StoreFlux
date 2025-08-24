@@ -11,13 +11,12 @@ const LoginProvider = ({children}) => {
         password: '',
         name: '',
         token: '',
-        loading: false,
         avatar: null
     }
-    const [{id, email, password, name, token, loading, avatar}, loginDispatch] = useReducer(loginReducer, initialState)
+    const [{id, email, password, name, token, avatar}, loginDispatch] = useReducer(loginReducer, initialState)
     
     return (
-        <LoginContext.Provider value={{id, email, password, name, token , loading, avatar,loginDispatch}}>
+        <LoginContext.Provider value={{id, email, password, name, token, avatar,loginDispatch}}>
             {children}
         </LoginContext.Provider>
     )

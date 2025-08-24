@@ -60,7 +60,7 @@ export const updateProfile = async (id, updatedData, token) => {
         updatedData,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // needs correct token
+            Authorization: `Bearer ${token}`,
           },
         }
       )
