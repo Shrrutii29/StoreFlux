@@ -18,13 +18,15 @@ export const Login = () => {
     try {
       const data = await userLogin(email, password)
 
+      if (Object.keys(data)?.length > 0) {
+        localStorage.setItem("token", data.access_token)
+      }
+
       if (data?.access_token) {
         authDispatch({
           type: "TOKEN",
           payload: { token: data }
         });
-
-        localStorage.setItem("token", data.access_token)
 
         setStatus("🎉 Login successful! Redirecting...")
         setTimeout(() => navigate("/"), 1000)

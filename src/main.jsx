@@ -9,11 +9,11 @@ import { AuthProvider } from './context/auth.context.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <CardProvider>
-        <AuthProvider>
+      <AuthProvider>
+        <CardProvider>
           <App />
-        </AuthProvider>
-      </CardProvider>
+        </CardProvider>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )

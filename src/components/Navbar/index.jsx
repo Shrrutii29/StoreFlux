@@ -39,7 +39,7 @@ export const Navbar = () => {
                     >
                         favorite
                     </span>
-                    {wishlist.length > 0 && (
+                    {token?.access_token && wishlist.length > 0 && (
                         <span className="absolute -top-2 -right-2 bg-pink-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">
                             {wishlist.length}
                         </span>
@@ -54,7 +54,7 @@ export const Navbar = () => {
                     >
                         shopping_cart
                     </span>
-                    {cart.length > 0 && (
+                    {token?.access_token && cart.length > 0 && (
                         <span className="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md">
                             {cart.length}
                         </span>

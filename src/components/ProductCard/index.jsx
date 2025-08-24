@@ -10,24 +10,34 @@ export const ProductCard = ({ product }) => {
     const isProductInWishlist = findProductInWishlist(wishlist, product.id)
 
     const onAddCartClick = (product) => {
-        !isProductInCart
-            ? cardDispatch({
+
+        if (!isProductInCart) {
+            localStorage.setItem('cart', JSON.stringify([...cart, product]))
+            cardDispatch({
                 type: "ADD_TO_CART",
                 payload: { product },
             })
-            : navigate("/cart")
+
+        } else {
+            navigate("/cart")
+
+        }
     }
 
     const onWishlistClick = (product) => {
-        !isProductInWishlist
-            ? cardDispatch({
+        if (!isProductInWishlist) {
+            localStorage.setItem('wishlist', JSON.stringify([...wishlist, product]))
+            cardDispatch({
                 type: "ADD_TO_WISHLIST",
                 payload: { product },
             })
-            : cardDispatch({
+
+        } else {
+            cardDispatch({
                 type: "REMOVE_FROM_WISHLIST",
                 payload: { product },
             })
+        }
     }
 
     return (

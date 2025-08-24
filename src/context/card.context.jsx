@@ -1,18 +1,20 @@
 import { createContext, useContext, useReducer } from "react";
 import { cardReducer } from "../reducers/cardReducer";
+import { useAuth } from "./auth.context";
 
 const CardContext = createContext()
 
-const CardProvider = ({children}) => {
+const CardProvider = ({ children }) => {
+    const { id } = useAuth()
 
     const initialState = {
-        cart: [],
-        wishlist: []
+        cart: JSON.parse(localStorage.getItem('cart')) || [],
+        wishlist: JSON.parse(localStorage.getItem('wishlist')) || []
     }
-    const [{cart, wishlist}, cardDispatch] = useReducer(cardReducer, initialState)
-    
+    const [{ cart, wishlist }, cardDispatch] = useReducer(cardReducer, initialState)
+
     return (
-        <CardContext.Provider value={{cart, wishlist, cardDispatch}}>
+        <CardContext.Provider value={{ cart, wishlist, cardDispatch }}>
             {children}
         </CardContext.Provider>
     )
@@ -23,4 +25,4 @@ const useCard = () => {
 
 }
 
-export {CardProvider, useCard}
+export { CardProvider, useCard }
